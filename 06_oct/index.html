@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Promociones</title>
+<style>
+
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background: #2D1B4E;
+    color: #FFF4E0;
+    display: flex;
+    justify-content: center;
+    padding: 30px 15px;
+  }
+  .caja {
+    width: 100%;
+    max-width: 400px;
+  }
+  h1 {
+    text-align: center;
+    color: #FFC93C;
+  }
+  .formulario {
+    background: #46306F;
+    padding: 20px;
+    border-radius: 15px;
+  }
+  input, select, button {
+    width: 100%;
+    padding: 12px;
+    margin: 6px 0 14px 0;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+  input, select {
+    background: #FFF4E0;
+    color: #2D1B4E;
+  }
+  button {
+    background: #FF5C7A;
+    color: #2D1B4E;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #ff7a93;
+  }
+  .boleto {
+    background: #FFF4E0;
+    color: #2D1B4E;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 15px;
+    border-top: 10px solid #FFC93C;
+  }
+</style>
+</head>
+<body>
+
+<div class="caja">
+  <h1>🎁 Tu promoción</h1>
+
+  <div class="formulario">
+    <label>Nombre</label>
+    <input id="nombre" type="text" placeholder="¿Cómo te llamas?">
+
+    <label>Edad</label>
+    <input id="edad" type="number" placeholder="¿Cuántos años tienes?">
+
+    <label>Sexo</label>
+    <select id="sexo">
+      <option value="H">Hombre</option>
+      <option value="M">Mujer</option>
+    </select>
+
+    <button onclick="mostrarPromocion()">Ver mi promoción</button>
+  </div>
+
+  <div id="resultado"></div>
+</div>
+
+<script>
+  function mostrarPromocion() {
+
+    
+    var nombre = document.getElementById("nombre").value;
+    var edad = Number(document.getElementById("edad").value);
+    var sexo = document.getElementById("sexo").value;
+
+    
+    var persona;
+    var promocion;
+
+    if (edad < 18) {
+      persona = "🧒";
+    } else if (edad < 60) {
+      persona = "🧑";
+    } else {
+      persona = "👴";
+    }
+
+    
+    if (edad < 18) {
+      if (sexo == "H") {
+        promocion = "🎬 CINE: función de Iron Man 🦾 con 2x1";
+      } else {
+        promocion = "🎬 CINE: función de Barbie 💖 con 2x1";
+      }
+    } else if (edad <= 30) {
+      if (sexo == "H") {
+        promocion = "🍻 ANTRO: entrada gratis + 2 bebidas";
+      } else {
+        promocion = "🧘 PILATES: tu primera clase es gratis";
+      }
+    } else {
+      if (sexo == "H") {
+        promocion = "🏋️ GYM: inscripción gratis + 50% el primer mes";
+      } else {
+        promocion = "💆 SPA: masaje relajante con 30% de descuento";
+      }
+    }
+
+   
+    document.getElementById("resultado").innerHTML =
+      "<div class='boleto'>" +
+        "<div style='font-size: 70px'>" + persona + "</div>" +
+        "<h2>¡Hola, " + nombre + "!</h2>" +
+        "<p>Tienes " + edad + " años</p>" +
+        "<h3>" + promocion + "</h3>" +
+      "</div>";
+  }
+</script>
+
+</body>
+</html>
